@@ -27,7 +27,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
-                                <span class="badge badge-sm indicator-item">8</span>
+                                <span id="count" class="badge badge-sm indicator-item">8</span>
                             </div>
                         </div>
                         <div tabindex="0" class="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow">
@@ -64,13 +64,16 @@
         </nav>
     </header>
     <main>
+        <div id="selected-container">
+
+        </div>
         <section id="category-container" class="flex w-11/12 mx-auto gap-4 justify-center mt-10">
             <!-- dynamic pets button -->
         </section>
         <h2 id="status" class="text-center pt-36 text-5xl font-bold text-red-700">ops data not available !!!</h2>
 
 
-        <div id="spiner" class="text-center hidden">
+        <div id="spiner" class="text-center  hidden">
             <span class="loading loading-bars loading-xs"></span>
             <span class="loading loading-bars loading-sm"></span>
             <span class="loading loading-bars loading-md"></span>

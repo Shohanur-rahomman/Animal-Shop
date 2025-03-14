@@ -65,23 +65,49 @@ const displayPets = (pets) => {
             <div class="card-body">
             <h2 class="card-title">${pet.breed}</h2>
             <p class="text-ellipsis line-clamp-2">${pet.pet_details}</p>
-            <div class="card-actions justify-end">
-              <button class="btn btn-primary">Select</button>
+            <div class="card-actions ">
+              <button class="btn bg-green-600 w-full btnAllSelect">Select</button>
             </div>
           </div>
         </div>
     `;
     petContainer.appendChild(div);
   });
+  const allSelectBtn = document.getElementsByClassName('btnAllSelect');
+  for (const button of allSelectBtn) {
+    button.addEventListener('click', (e) => {
+      const title = e.target.parentNode.parentNode.childNodes[1].innerText;
+      console.log(title);
+      const selectedContainer = document.getElementById('selected-container');
+      const div = document.createElement('div');
+      div.classList.add('flex','gap-6','justify-center', 'item-center', 'mt-10')
+      div.innerHTML = `
+     <li class="list-none ">${title}</li>
+     <button class="btn">Delete</button>
+      `;
+      selectedContainer.appendChild(div);
+      const prevCount = numberValue('count');
+      const sum = prevCount + 1;
+      document.getElementById('count').innerText = sum;
+    })
+  }
 };
-
 
 const makeHidden = (id) => {
   document.getElementById(id).style.display = 'none';
-} 
+}; 
 const show = (id) => {
   document.getElementById(id).style.display = 'block';
-} 
+};
+
+const numberValue = (id) => {
+  const value = document.getElementById(id).innerText;
+  const number = parseInt(value);
+  return number;
+}
+
+
+
 
 loadPets('cat');
 loadCategory();
