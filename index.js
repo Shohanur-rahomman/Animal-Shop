@@ -26,7 +26,7 @@ const loadPets = async (categoryName) => {
   petContainer.classList.remove("hidden");
   statusMessage.classList.add("hidden");
 
-  
+
   show('spiner')
   const res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${categoryName}`);
   const data = await res.json();
@@ -34,9 +34,9 @@ const loadPets = async (categoryName) => {
   if (data.data) {
     displayPets(data.data);
     makeHidden('spiner')
-    
+
   }
-  
+
 };
 
 const displayPets = (pets) => {
@@ -56,7 +56,7 @@ const displayPets = (pets) => {
 
   pets.forEach((pet) => {
     const div = document.createElement('div');
-    
+
     div.innerHTML = `
         <div class="card bg-base-100 shadow-sm">
           <figure>
@@ -66,7 +66,8 @@ const displayPets = (pets) => {
             <h2 class="card-title">${pet.breed}</h2>
             <p class="text-ellipsis line-clamp-2">${pet.pet_details}</p>
             <div class="card-actions ">
-              <button class="btn bg-green-600 w-full btnAllSelect">Select</button>
+            <button class="btn bg-gray-200 w-full btnAllSelect">Select</button>
+            <button onclick="handleDetails('${pet.petId}')" class="btn bg-gray-200 w-full details">Details</button>
             </div>
           </div>
         </div>
@@ -80,7 +81,7 @@ const displayPets = (pets) => {
       console.log(title);
       const selectedContainer = document.getElementById('selected-container');
       const div = document.createElement('div');
-      div.classList.add('flex','gap-6','justify-center', 'item-center', 'mt-10')
+      div.classList.add('flex', 'gap-6', 'justify-center', 'item-center', 'mt-10')
       div.innerHTML = `
      <li class="list-none ">${title}</li>
      <button class="btn">Delete</button>
@@ -95,7 +96,7 @@ const displayPets = (pets) => {
 
 const makeHidden = (id) => {
   document.getElementById(id).style.display = 'none';
-}; 
+};
 const show = (id) => {
   document.getElementById(id).style.display = 'block';
 };
@@ -104,7 +105,14 @@ const numberValue = (id) => {
   const value = document.getElementById(id).innerText;
   const number = parseInt(value);
   return number;
+};
+
+const handleDetails = async(petId) => {
+  const petDetails = await fetch(`https://openapi.programming-hero.com/api/peddy/pet/${petId}`);
+  const res = await petDetails.json();
+  console.log(res.petData);
 }
+
 
 
 
